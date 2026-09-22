@@ -15,6 +15,4 @@ if not has_telescope then
 	return
 end
 
-local M = require("honcho")
-
-return M
+return require("honcho")

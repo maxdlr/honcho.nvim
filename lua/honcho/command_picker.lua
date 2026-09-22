@@ -14,6 +14,7 @@ local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local themes = require("telescope.themes")
 local telescope_config = require("telescope.config")
+local entry_display = require("telescope.pickers.entry_display")
 
 --- Sentinel action value marking a command entry as a non-selectable separator.
 --- Use it as the `action` field, e.g. `{ '───────────', Command_picker_separator }`.
@@ -97,7 +98,15 @@ function M.picker(title, commands, opts)
 								value = e,
 								ordinal = is_separator and "" or e.label,
 								display = function(entry)
-									return entry.value.label, { { { 0, #entry.value.label }, hl_group } }
+									local items = {
+										{ entry.value.label, hl_group },
+									}
+									local display = entry_display.create({
+										separator = " • ",
+										items = items,
+									})
+									-- return entry.value.label, { { { 0, #entry.value.label }, hl_group } }
+									return display
 								end,
 							}
 						end,
