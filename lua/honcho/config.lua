@@ -18,8 +18,8 @@ local defaults = {
 			-- user theme default fg
 			fg = "#ffffff",
 			-- user theme default bg
-			-- get user current background color from vim.api.nvim_get_hl_by_name
-			bg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Normal", rgb = true })),
+			-- pull the current colorscheme's Normal background as a hex string
+			bg = string.format("#%06x", vim.api.nvim_get_hl(0, { name = "Normal" }).bg or 0x000000),
 			-- user theme default neutral
 			neutral = "#555555",
 		},
