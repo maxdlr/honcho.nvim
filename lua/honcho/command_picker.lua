@@ -99,7 +99,7 @@ function M.picker(title, commands, opts)
 								ordinal = is_separator and "" or e.label,
 								display = function(entry)
 									local items = {
-										{ entry.value.label, hl_group },
+										{  entry.value.label, { { { 0, #entry.value.label }, hl_group } } },
 									}
 									local display = entry_display.create({
 										separator = " • ",
