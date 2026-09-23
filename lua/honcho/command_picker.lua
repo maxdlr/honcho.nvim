@@ -96,7 +96,7 @@ function M.picker(title, commands, opts)
 							)
 
 							local displayer = entry_display.create({
-								separator = " ",
+								separator = " / ",
 								items = {
 									-- { width = 30 },
 									{ remaining = true },
