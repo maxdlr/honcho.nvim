@@ -96,12 +96,21 @@ function M.picker(title, commands, opts)
 								e.color or (is_separator and config.options.defaults.color.neutral or DEFAULT_FG_COLOR)
 							)
 
+							---@class HonchoEntryDisplayItem
+							---@field width? number|string|fun(...):number Fixed column width (chars). Omit only on the last item if using `remaining`.
+							---@field right_justify? boolean Right-align this column's content within its width.
+							---@field remaining? boolean Marks this column as using all leftover width. Only valid on the last item.
+
+							---@type HonchoEntryDisplayItem[]
+							local items = {
+								{ width = 2 },
+								{ width = 30 },
+								{ remaining = true },
+							}
+
 							local displayer = entry_display.create({
-								separator = " / ",
-								items = {
-									-- { width = 30 },
-									{ remaining = true },
-								},
+								separator = " ",
+								items = items,
 							})
 
 							return {
