@@ -112,7 +112,7 @@ function M.picker(title, commands, opts)
 							if not e.description then
 								table.insert(items, { remaining = true })
 							else
-								table.insert(items, { width = 30 })
+								table.insert(items, { width = e.label:len() + 1 })
 							end
 
 							if e.description then
