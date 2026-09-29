@@ -46,6 +46,7 @@ end
 ---@field action string|function|false Command action to execute when selected.
 ---@field color? string Hex color (e.g. "#FF8800") for the label text. Defaults to white.
 ---@field description? string Optional description shown alongside the label in the picker.
+---@field icon? string Optional icon shown alongside the label in the picker.
 
 --- Creates a Telescope dropdown picker from a list of commands.
 --- @param title string Picker prompt title
@@ -108,6 +109,7 @@ function M.picker(title, commands, opts)
 								ordinal = is_separator and "" or e.label,
 								display = function(entry)
 									return displayer({
+										{ entry.value.icon or "" },
 										{ entry.value.label, hl_group },
 										{ entry.value.description or "", "Comment" },
 									})
