@@ -51,7 +51,7 @@ end
 --- Creates a Telescope dropdown picker from a list of commands.
 --- @param title string Picker prompt title
 --- @param commands HonchoCommandDefinition[] List of {label, action, color} pairs.
---- @param opts? {border_color?: string} border_color: optional hex color (e.g. "#7aa2f7") for the
+--- @param opts? {border_color?: string, width?: number} border_color: optional hex color (e.g. "#7aa2f7") for the
 function M.picker(title, commands, opts)
 	opts = opts or {}
 	return function()
@@ -78,7 +78,7 @@ function M.picker(title, commands, opts)
 					layout_config = {
 						prompt_position = "top",
 						width = function(_, max_columns, _)
-							return math.max(40, math.floor(max_columns * 0.13))
+							return math.max(opts.width or 60, math.floor(max_columns * 0.13))
 						end,
 						height = #commands + 4,
 					},
