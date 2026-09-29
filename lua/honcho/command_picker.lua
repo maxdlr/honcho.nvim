@@ -101,12 +101,23 @@ function M.picker(title, commands, opts)
 							---@field right_justify? boolean Right-align this column's content within its width.
 							---@field remaining? boolean Marks this column as using all leftover width. Only valid on the last item.
 
+							-- Only reserve an icon column when this entry actually has one, so
+							-- icon-less entries don't waste width on an empty column.
 							---@type HonchoEntryDisplayItem[]
-							local items = {
-								{ width = 2 },
-								{ width = 30 },
-								{ remaining = true },
-							}
+							local items = {}
+							if e.icon then
+								table.insert(items, { width = 2 })
+							end
+
+							if not e.description then
+								table.insert(items, { remaining = true })
+							else
+								table.insert(items, { width = 30 })
+							end
+
+							if e.description then
+								table.insert(items, { remaining = true })
+							end
 
 							local displayer = entry_display.create({
 								separator = " ",
@@ -117,11 +128,13 @@ function M.picker(title, commands, opts)
 								value = e,
 								ordinal = is_separator and "" or e.label,
 								display = function(entry)
-									return displayer({
-										{ entry.value.icon or "" },
-										{ entry.value.label, hl_group },
-										{ entry.value.description or "", "Comment" },
-									})
+									local row = {}
+									if entry.value.icon then
+										table.insert(row, entry.value.icon)
+									end
+									table.insert(row, { entry.value.label, hl_group })
+									table.insert(row, { entry.value.description or "", "Comment" })
+									return displayer(row)
 								end,
 							}
 						end,
