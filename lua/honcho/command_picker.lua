@@ -80,8 +80,8 @@ function M.picker(title, commands, opts)
 						width = function(_, max_columns, _)
 							local maxLabelLen = 0
 							for _, cmd in ipairs(commands) do
-								if cmd.label:len() > maxLabelLen then
-									maxLabelLen = cmd.label:len()
+								if #cmd.label > maxLabelLen then
+									maxLabelLen = #cmd.label
 								end
 							end
 							return math.max(opts.width or maxLabelLen)
