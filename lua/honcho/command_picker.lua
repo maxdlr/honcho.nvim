@@ -84,7 +84,8 @@ function M.picker(title, commands, opts)
 									maxLabelLen = cmd.label:len()
 								end
 							end
-							return math.max(opts.width or maxLabelLen or 60, math.floor(max_columns * 0.13))
+							return math.max(opts.width or maxLabelLen)
+							-- math.floor(max_columns * 0.13)
 						end,
 						height = #commands + 4,
 					},
