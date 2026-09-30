@@ -130,7 +130,7 @@ function M.picker(title, commands, opts)
 								display = function(entry)
 									local row = {}
 									if entry.value.icon then
-										table.insert(row, entry.value.icon)
+										table.insert(row, { entry.value.icon, hl_group })
 									end
 									table.insert(row, { entry.value.label, hl_group })
 									table.insert(row, { entry.value.description or "", "Comment" })
