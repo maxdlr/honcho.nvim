@@ -78,7 +78,13 @@ function M.picker(title, commands, opts)
 					layout_config = {
 						prompt_position = "top",
 						width = function(_, max_columns, _)
-							return math.max(opts.width or 60, math.floor(max_columns * 0.13))
+							local maxLabelLen = 0
+							for _, cmd in ipairs(commands) do
+								if cmd.label:len() > maxLabelLen then
+									maxLabelLen = cmd.label:len()
+								end
+							end
+							return math.max(opts.width or maxLabelLen or 60, math.floor(max_columns * 0.13))
 						end,
 						height = #commands + 4,
 					},
