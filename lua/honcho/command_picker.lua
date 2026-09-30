@@ -80,8 +80,8 @@ function M.picker(title, commands, opts)
 						width = function(_, max_columns, _)
 							local maxLabelLen = 0
 							for _, cmd in ipairs(commands) do
-								if #cmd.label > maxLabelLen then
-									maxLabelLen = #cmd.label
+								if vim.fn.strdisplaywidth(cmd.label) > maxLabelLen then
+									maxLabelLen = vim.fn.strdisplaywidth(cmd.label)
 								end
 							end
 							return math.max(opts.width or maxLabelLen + 6)
