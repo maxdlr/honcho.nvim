@@ -14,21 +14,20 @@ require('honcho').setup()
 
 `setup()` is optional. It only matters if you want to override the default colors.
 
-## Default config
+### Default config
 
 ```lua
 {
   defaults = {
     color = {
       fg = '#ffffff',
-      bg = '#000000',
       neutral = '#555555',
     },
   },
 }
 ```
 
-`fg` is the label color for normal command entries. `neutral` is the label color for separators. `bg` is currently unused.
+`fg` is the label color for normal command entries. `neutral` is the label color for separators.
 
 Override with:
 
@@ -76,22 +75,33 @@ Each entry needs `label` and `action`. `action` is one of:
 - a string, run as a vim command (`vim.cmd(action)`)
 - `separator`, marks the entry as a non-selectable divider
 
-Fields must be named (`label = ...`, `action = ...`). Positional table entries (`{ 'label', fn }`) will not work — `action` is read by name, not by position.
+Optional per-entry fields:
 
-`picker(title, commands, opts)` returns a function. Call it from a keymap, a user command, wherever. It doesn't run immediately.
+- `color` — hex color (e.g. `'#FF8800'`) for that entry's label text. Defaults to `fg` from the config.
+- `description` — shown next to the label, dimmed (`Comment` highlight).
+- `icon` — shown before the label (e.g. a Nerd Font glyph).
 
-`opts.border_color` is optional. Set it to a hex color to override the Telescope border/prompt title color while the picker is open. It's restored when the picker closes.
+Fields must be named (`label = ...`, `action = ...`). Positional table entries (`{ 'label', fn }`) will not work.
 
-## What it does so far
+```lua
+{
+  label = 'format buffer',
+  action = function() vim.lsp.buf.format() end,
+  icon = '',
+  description = 'via LSP',
+  color = '#7aa2f7',
+}
+```
+
+`picker(title, commands, opts)` returns a function — call it from a keymap, a user command, wherever.
+
+- `opts.border_color` — hex color to override the Telescope border/prompt title color while the picker is open. Restored on close.
+- `opts.width` — fixed width (in columns) for the picker window. Defaults to the longest label's display width plus padding.
+
+## Features
 
 - Opens a Telescope dropdown from a list of commands.
 - Runs a function or a vim command on selection.
-- Supports separator rows: grayed out, skipped when navigating with arrows or `<C-n>`/`<C-p>`.
-- Lets you set a custom border color per picker, restored automatically on close.
-- Lets you override the default label colors globally via `setup()`.
-
-## What it doesn't do yet
-
-- No per-picker color override beyond `border_color`.
-- No validation on malformed command entries (missing `action` will error at selection time, not at picker creation).
-- No README-documented named pickers or command registry — you call `picker(...)` directly, there's no `:Honcho` command yet.
+- Separator rows: grayed out, skipped when navigating with arrows or `<C-n>`/`<C-p>`.
+- Per-picker border color, restored automatically on close.
+- Global label colors configurable via `setup()`.
