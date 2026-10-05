@@ -16,10 +16,6 @@ local themes = require("telescope.themes")
 local telescope_config = require("telescope.config")
 local entry_display = require("telescope.pickers.entry_display")
 
---- Sentinel action value marking a command entry as a non-selectable separator.
---- Use it as the `action` field, e.g. `{ '───────────', Command_picker_separator }`.
-M.separator = false
-
 local color_hl_cache = {}
 
 --- Gets (or lazily creates) a highlight group named `prefix<HEX>` that sets `hl_field` to `hex`.
@@ -96,7 +92,7 @@ function M.picker(title, commands, opts)
 					finder = finders.new_table({
 						results = commands,
 						entry_maker = function(e)
-							local is_separator = e.action == M.separator
+							local is_separator = e.action == false
 
 							local hl_group = get_color_hl(
 								"CommandPickerColor",
@@ -165,7 +161,7 @@ function M.picker(title, commands, opts)
 								move(bufnr)
 								local guard = 0
 								while
-									action_state.get_selected_entry().value.action == M.separator
+									action_state.get_selected_entry().value.action == false
 									and guard < #commands
 								do
 									move(bufnr)
@@ -184,7 +180,7 @@ function M.picker(title, commands, opts)
 						actions.select_default:replace(function()
 							local action = action_state.get_selected_entry().value.action
 
-							if action == M.separator then
+							if action == false then
 								return
 							end
 

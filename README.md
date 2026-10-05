@@ -47,7 +47,6 @@ require('honcho').setup({
 ```lua
 local honcho = require('honcho')
 local picker = honcho.honcho_picker
-local separator = honcho.honcho_separator
 
 local cmds = {
   {
@@ -58,7 +57,7 @@ local cmds = {
   },
   {
     label = '------ separator -------',
-    action = separator,
+    action = false,
   },
   {
     label = 'open netrw',
@@ -73,7 +72,7 @@ Each entry needs `label` and `action`. `action` is one of:
 
 - a function, called when the entry is selected
 - a string, run as a vim command (`vim.cmd(action)`)
-- `separator`, marks the entry as a non-selectable divider
+- `false`, marks the entry as a non-selectable separator
 
 Optional per-entry fields:
 
