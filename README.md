@@ -2,6 +2,10 @@
 
 A Telescope command picker for Neovim. Build a dropdown list of labeled actions and open it wherever you want.
 
+## Preview
+
+https://github.com/user-attachments/assets/00fac9f3-0dfc-4bc0-866a-60aa5bafb259
+
 ## Requirements
 
 telescope.nvim. Nothing else.
