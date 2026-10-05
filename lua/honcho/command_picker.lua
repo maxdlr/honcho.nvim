@@ -3,7 +3,7 @@ local config = require("honcho.config")
 local M = {}
 
 local DEFAULT_FG_COLOR = config.options.defaults.color.fg
-local DEFAULT_BG_COLOR = config.options.defaults.color.bg
+-- local DEFAULT_BG_COLOR = config.options.defaults.color.bg
 
 local BORDER_HL_GROUPS =
 	{ "TelescopePromptBorder", "TelescopeResultsBorder", "TelescopePreviewBorder", "TelescopePromptTitle" }
@@ -160,10 +160,7 @@ function M.picker(title, commands, opts)
 							return function()
 								move(bufnr)
 								local guard = 0
-								while
-									action_state.get_selected_entry().value.action == false
-									and guard < #commands
-								do
+								while action_state.get_selected_entry().value.action == false and guard < #commands do
 									move(bufnr)
 									guard = guard + 1
 								end
