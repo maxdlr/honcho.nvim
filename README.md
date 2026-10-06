@@ -1,6 +1,6 @@
 # honcho.nvim
 
-A Telescope command picker for Neovim. Build a dropdown list of labeled actions and open it wherever you want.
+A Snacks picker command picker for Neovim. Build a dropdown list of labeled actions and open it wherever you want.
 
 ## Preview
 
@@ -8,7 +8,7 @@ https://github.com/user-attachments/assets/00fac9f3-0dfc-4bc0-866a-60aa5bafb259
 
 ## Requirements
 
-telescope.nvim. Nothing else.
+snacks.nvim (the `picker` module). Nothing else.
 
 ## Setup
 
@@ -98,12 +98,12 @@ Fields must be named (`label = ...`, `action = ...`). Positional table entries (
 
 `picker(title, commands, opts)` returns a function — call it from a keymap, a user command, wherever.
 
-- `opts.border_color` — hex color to override the Telescope border/prompt title color while the picker is open. Restored on close.
+- `opts.border_color` — hex color to override the picker's border/title color while the picker is open. Restored on close.
 - `opts.width` — fixed width (in columns) for the picker window. Defaults to the longest label's display width plus padding.
 
 ## Features
 
-- Opens a Telescope dropdown from a list of commands.
+- Opens a Snacks picker dropdown from a list of commands.
 - Runs a function or a vim command on selection.
 - Separator rows: grayed out, skipped when navigating with arrows or `<C-n>`/`<C-p>`.
 - Per-picker border color, restored automatically on close.

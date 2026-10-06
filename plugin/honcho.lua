@@ -5,11 +5,11 @@ vim.g.loaded_honcho = true
 
 local notify = require("honcho.notify").notify
 
-local has_telescope = pcall(require, "telescope")
-if not has_telescope then
+local has_snacks = pcall(require, "snacks")
+if not has_snacks then
 	notify(
 		"Config Error",
-		"[Honcho] Telescope is required for Honcho to work. Please install telescope.nvim.",
+		"[Honcho] snacks.nvim is required for Honcho to work. Please install folke/snacks.nvim.",
 		vim.log.levels.ERROR
 	)
 	return
