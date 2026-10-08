@@ -62,7 +62,7 @@ function M.picker(title, commands, opts)
 			max_label_len = math.max(max_label_len, vim.fn.strdisplaywidth(cmd.label))
 		end
 		local width = opts.width or max_label_len
-		local height = #commands
+		local height = #commands + 2
 
 		local items = {}
 		for i, cmd in ipairs(commands) do
