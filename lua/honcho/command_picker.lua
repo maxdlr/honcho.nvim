@@ -139,7 +139,7 @@ function M.picker(title, commands, opts)
 			win = {
 				list = {
 					wo = {
-						linenumber = false,
+						number = false,
 					},
 				},
 				input = {
