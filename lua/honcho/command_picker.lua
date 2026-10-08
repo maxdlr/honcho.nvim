@@ -140,6 +140,7 @@ function M.picker(title, commands, opts)
 				list = {
 					wo = {
 						number = false,
+						relativenumber = false,
 					},
 				},
 				input = {
