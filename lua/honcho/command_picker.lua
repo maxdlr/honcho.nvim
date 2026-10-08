@@ -106,7 +106,7 @@ function M.picker(title, commands, opts)
 				preset = "select",
 				layout = {
 					width = width,
-					min_width = width,
+					min_width = 14,
 					height = height,
 					min_height = height,
 				},
