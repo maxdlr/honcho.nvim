@@ -92,8 +92,12 @@ function M.picker(title, commands, opts)
 			end
 		end
 
-		local move_next = skip_separators(function(p) p.list:move(1) end)
-		local move_prev = skip_separators(function(p) p.list:move(-1) end)
+		local move_next = skip_separators(function(p)
+			p.list:move(1)
+		end)
+		local move_prev = skip_separators(function(p)
+			p.list:move(-1)
+		end)
 
 		picker = Snacks.picker({
 			title = title,
@@ -125,10 +129,19 @@ function M.picker(title, commands, opts)
 				return row
 			end,
 			actions = {
-				move_next = function(p) move_next(p) end,
-				move_prev = function(p) move_prev(p) end,
+				move_next = function(p)
+					move_next(p)
+				end,
+				move_prev = function(p)
+					move_prev(p)
+				end,
 			},
 			win = {
+				list = {
+					wo = {
+						linenumber = false,
+					},
+				},
 				input = {
 					keys = {
 						["<Down>"] = { "move_next", mode = { "i", "n" } },
